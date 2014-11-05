@@ -25,24 +25,24 @@ var work = {
 };
 
 var projects = {
-  "projects" : [
+  "projectsArray" : [
     {
       "title":"Mockup Website",
       "datesWorked":"2014",
-      "descriptoin":"Mockup from Udacity FED Nano Deg",
+      "description":"Mockup from Udacity FED Nano Deg",
       "images" :["images/fry.jpg","images/197x148.gif"]
     },
    {
       "title":"Sample Project",
       "datesWorked":"2013",
-      "descriptoin":"AngularJS and Asp.NET Web API",
-      "images" :["images/fry.jpg","images/197x148.gif"]
+      "description":"AngularJS and Asp.NET Web API",
+      "images" :["images/197x148.gif","images/fry.jpg"]
     }
   ]
 };
 
 var  bio = {
-  "name": "Mohamed Masood Alam",
+  "name": "Masood Alam",
   "role": "Web Developer",
   "WelComeMsg": "Hello world",
   "contacts":{
@@ -125,7 +125,6 @@ function displayWork()
     for(job in work.jobs)
     {
       $("#workExperience").append(HTMLworkStart);
-      console.log(job);
       var employerName = HTMLworkEmployer.replace("%data%",work.jobs[job]["employer"]);
       var title = HTMLworkTitle.replace("%data%",work.jobs[job]["title"]);
       var formattedDates = HTMLworkDates.replace("%data%",work.jobs[job]["datesWorked"]);
@@ -137,8 +136,46 @@ function displayWork()
   }
 }
 
-displayWork();
+projects.display = function(){
+  if(projects.projectsArray.length > 0)
+  {
+    for(project in projects.projectsArray)
+    {
+      $("#projects").append(HTMLprojectStart);
+      var formattedTitle = HTMLprojectTitle.replace("%data%",projects.projectsArray[project].title);
+      $('.project-entry:last').append(formattedTitle);
+      var formattedDates = HTMLprojectDates.replace("%data%",projects.projectsArray[project].datesWorked);
+      $('.project-entry:last').append(formattedDates);
+      var formattedDescription =HTMLprojectDescription.replace("%data%",projects.projectsArray[project].description);
+      $('.project-entry:last').append(formattedDescription);
+      if(projects.projectsArray[project].images.length > 0)
+      {
+        for(image in projects.projectsArray[project].images){
+          var formattedImage = HTMLprojectImage.replace("%data%",projects.projectsArray[project].images[image]);
+          $('.project-entry:last').append(formattedImage);
+        }
+      }
+    }
+  }
+}
 
+function inName(name) {
+  var finalName = name || bio.name;
+  var names = finalName.trim().split(" ");
+  names[1] = names[1].toUpperCase();
+  names[0] = names[0].slice(0,1).toUpperCase() +
+             names[0].slice(1).toLowerCase();
+  console.log(names.join(" "));
+  return names.join(" ");
+}
+
+
+displayWork();
+projects.display();
+
+
+$("#main").append(internationalizeButton);
+$("#mapDiv").append(googleMap);
 
 // var weirdObject = {
 //     "property": "Time for an astronomy lesson!",

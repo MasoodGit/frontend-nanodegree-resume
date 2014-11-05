@@ -5,21 +5,21 @@ var work = {
       "title":"Technical Specialist",
       "location":"Bangalore",
       "datesWorked":"2013-Present",
-      "description":""
+      "description":"Who moved my cheese cheesy feet cauliflower cheese.Quesa telggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheescake  Hard cheese blue castello halloue psoaos df say shcees stinkgk snidld flskdfadf adfll"
     },
     {
       "employer":"Varian Medical Systems",
       "title":"Tech Lead",
       "location":"Pune",
       "datesWorked":"2007-2013",
-      "description":""
+      "description":"Who moved my cheese cheesy feet cauliflower cheese.Quesa telggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheescake  Hard cheese blue castello halloue psoaos df say shcees stinkgk snidld flskdfadf adfll"
     },
     {
       "employer":"Harvest Consultancy",
       "title":"Software Developer",
       "location":"Bangalore",
       "datesWorked":"2006-2007",
-      "description":""
+      "description":"Who moved my cheese cheesy feet cauliflower cheese.Quesa telggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheescake  Hard cheese blue castello halloue psoaos df say shcees stinkgk snidld flskdfadf adfll"
     }
   ]
 };
@@ -118,18 +118,26 @@ if(bio.skills.length > 0)
   $("#skills").append(HTMLskills.replace("%data%", bio.skills));
 }
 
-if(work.jobs.length > 0)
+function displayWork()
 {
-  for(job in work.jobs)
+  if(work.jobs.length > 0)
   {
-    $("#workExperience").append(HTMLworkStart);
-    console.log(job);
-    var employerName = HTMLworkEmployer.replace("%data%",work.jobs[job]["employer"]);
-    var title = HTMLworkTitle.replace("%data%",work.jobs[job]["title"]);
-    $(".work-entry:last").append(employerName + title);
+    for(job in work.jobs)
+    {
+      $("#workExperience").append(HTMLworkStart);
+      console.log(job);
+      var employerName = HTMLworkEmployer.replace("%data%",work.jobs[job]["employer"]);
+      var title = HTMLworkTitle.replace("%data%",work.jobs[job]["title"]);
+      var formattedDates = HTMLworkDates.replace("%data%",work.jobs[job]["datesWorked"]);
+      var formattedDescription = HTMLworkDescription.replace("%data%",work.jobs[job]["description"]);
+      $(".work-entry:last").append(employerName + title);
+      $(".work-entry:last").append(formattedDates);
+      $(".work-entry:last").append(formattedDescription);
+    }
   }
 }
 
+displayWork();
 
 
 // var weirdObject = {
